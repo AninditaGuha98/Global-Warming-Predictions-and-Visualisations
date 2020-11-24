@@ -9,7 +9,7 @@ def read_dataset(path: Path) -> pd.DataFrame:
 
 
 def get_electricity_and_population_info():
-    df = read_dataset(Path('..','data', 'csv_files', 'electricity_and_population_info.csv'))
+    df = read_dataset(Path('.','data', 'csv_files', 'electricity_and_population_info.csv'))
     return df
 
 def get_all_emissions_info():
