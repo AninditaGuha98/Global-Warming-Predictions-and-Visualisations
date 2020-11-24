@@ -14,6 +14,8 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 
 from dashboard_components.population_vs_electricity_section import population_vs_electricity_section
+from dashboard_components.sea_level_vs_glacier_temp_section import \
+     sea_level_vs_glacier_temp_section
 
 
 def dashboard():
@@ -27,11 +29,6 @@ def dashboard():
         html.Hr(),
         html.H2(children="Electricity Generation Information:"),
         population_vs_electricity_section(app),
-
-        # html.Hr(),
-        # html.H2(children="Some Random Section To Test:"),
-        # sub_section_1(app),
-
 
     ])
 
