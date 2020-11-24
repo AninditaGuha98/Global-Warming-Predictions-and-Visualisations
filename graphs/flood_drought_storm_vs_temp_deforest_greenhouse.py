@@ -9,10 +9,11 @@ from data.source import *
 # Option:1 Map Structure
 
 def plot_map_for_drought_storm_flood(type_of_catastrophe, country):
-    if type_of_catastrophe == 'drought':
+    if type_of_catastrophe == 'Drought':
         df_drought = get_drought()
         country_name = list(country.split(" "))
-        df_drought = df_drought[df_drought['country'].isin(country_name)]
+        if country != 'All':
+            df_drought = df_drought[df_drought['country'].isin(country_name)]
 
         fig = px.choropleth(df_drought,
                             locations='country',
@@ -21,15 +22,16 @@ def plot_map_for_drought_storm_flood(type_of_catastrophe, country):
                             color_continuous_scale="Plasma",
                             locationmode='country names',
                             range_color=(0, 20),
-                            title='Drought per year',
+                            title='Drought over the years for ' + country_name[0],
                             height=600
                             )
-        fig.show()
+        return fig
 
-    elif type_of_catastrophe == 'storm':
+    elif type_of_catastrophe == 'Storm':
         df_storm = get_storm()
         country_name = list(country.split(" "))
-        df_storm = df_storm[df_storm['country'].isin(country_name)]
+        if country != 'All':
+            df_storm = df_storm[df_storm['country'].isin(country_name)]
 
         fig = px.choropleth(df_storm,
                             locations='country',
@@ -38,15 +40,15 @@ def plot_map_for_drought_storm_flood(type_of_catastrophe, country):
                             color_continuous_scale="Plasma",
                             locationmode='country names',
                             range_color=(0, 20),
-                            title='Storm per year',
+                            title='Storm over the years for ' + country_name[0],
                             height=600
                             )
-        fig.show()
-
-    elif type_of_catastrophe == 'flood':
+        return fig
+    elif type_of_catastrophe == 'Flood':
         df_flood = get_flood()
         country_name = list(country.split(" "))
-        df_flood = df_flood[df_flood['country'].isin(country_name)]
+        if country != 'All':
+            df_flood = df_flood[df_flood['country'].isin(country_name)]
 
         fig = px.choropleth(df_flood,
                             locations='country',
@@ -55,15 +57,15 @@ def plot_map_for_drought_storm_flood(type_of_catastrophe, country):
                             color_continuous_scale="Plasma",
                             locationmode='country names',
                             range_color=(0, 20),
-                            title='Flood per year',
+                            title='Flood over the years for ' + country_name[0],
                             height=600
                             )
-        fig.show()
+        return fig
     else:
         print("Issues loading graph")
 
 
-# plot_map_for_drought_storm_flood('storm', 'Japan')
+
 
 # Option 2: Bar Structure
 
@@ -194,6 +196,5 @@ def plot_combined_bar_vs_options(type_of_factor, year_range, country):
         fig.update_layout(barmode='group', xaxis_tickangle=-45)
         fig.show()
         return fig
-
 
 # plot_combined_bar_vs_options('Temperature', [1990, 2010], 'Ireland')
