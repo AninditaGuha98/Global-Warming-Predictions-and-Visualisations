@@ -25,7 +25,7 @@ def renewable_vs_non_renewable_electricity(country_name: str):
                       xaxis_title='Years',
                       yaxis_title='Electricity (kWh)')
 
-    fig.show()
+    # fig.show()
     return fig
 
 def non_renewable_electricity_vs_poverty(year: int):
@@ -42,11 +42,11 @@ def non_renewable_electricity_vs_poverty(year: int):
                    line=dict(color='royalblue', width=4)), secondary_y=True)
 
     fig.update_yaxes(title_text="<b>Electricity (kWh)</b>", secondary_y=False)
-    fig.update_yaxes(title_text="<b>Adjusted Income Per Person (Population Poverty)</b>", secondary_y=True)
-    fig.update_layout(title='<b>Electricity From Non-Renewable Sources vs Poverty Rate</b>for the year ' + str(year),
+    fig.update_yaxes(title_text="<b>Adjusted Income Per Person</b>", secondary_y=True)
+    fig.update_layout(title='<b>Electricity From Non-Renewable Sources vs Poverty Rate</b> for the year ' + str(year),
                       xaxis_title='Countries')
 
-    fig.show()
+    # fig.show()
     return fig
 
 def non_renewable_electricity_vs_population(year: int):
@@ -63,15 +63,15 @@ def non_renewable_electricity_vs_population(year: int):
     fig.add_trace(go.Scatter(x=df['country'], y=df['total_population'], name='Total Population', mode='lines+markers',
                    line=dict(color='royalblue', width=4)), secondary_y=True)
     fig.update_yaxes(title_text="<b>Electricity (kWh)</b>", secondary_y=False)
-    fig.update_yaxes(title_text="<b>Adjusted Income Per Person (Population Poverty)</b>", secondary_y=True)
+    fig.update_yaxes(title_text="<b>Total Population</b>", secondary_y=True)
     fig.update_layout(title='<b>Electricity From Non-Renewable Sources vs Total Population </b>for the year ' + str(year),
                       xaxis_title='Countries')
 
-    fig.show()
+    # fig.show()
     return fig
 
 if __name__ == "__main__":
-    country_name = 'Canada'
+    country_name = 'India'
     year = 1990
     renewable_vs_non_renewable_electricity(country_name)
     non_renewable_electricity_vs_poverty(year)
