@@ -12,5 +12,14 @@ def get_electricity_and_population_info():
     df = read_dataset(Path('..','data', 'csv_files', 'electricity_and_population_info.csv'))
     return df
 
+def get_all_emissions_info():
+    df = read_dataset(Path('..','data', 'csv_files', 'Clean_Combine_All.csv'))
+    return df
+
+def get_iso_countries():
+    df = read_dataset(Path('..','data', 'csv_files', 'countries_iso.csv'))
+    return df
+
 if __name__ == '__main__':
     print(get_electricity_and_population_info())
+    print(get_all_emissions_info())
