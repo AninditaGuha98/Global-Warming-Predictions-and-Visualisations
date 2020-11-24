@@ -65,20 +65,18 @@ def plot_map_for_drought_storm_flood(type_of_catastrophe, country):
         print("Issues loading graph")
 
 
-
-
 # Option 2: Bar Structure
 
-def plot_combined_bar_vs_options(type_of_factor, year_range, country):
+def plot_combined_bar_vs_options(type_of_factor, start_date, end_date, country):
     df_drought = get_drought()
     df_flood = get_flood()
     df_storm = get_storm()
 
     # Getting the range of years
     years = []
-    f_year = year_range[0]
+    f_year = start_date
     years.append(f_year)
-    while f_year != year_range[1]:
+    while f_year != end_date:
         f_year = f_year + 1
         years.append(f_year)
 
@@ -124,7 +122,6 @@ def plot_combined_bar_vs_options(type_of_factor, year_range, country):
         )
 
         fig.update_layout(barmode='group', xaxis_tickangle=-45)
-        fig.show()
         return fig
 
     if type_of_factor == 'Green House Gas Emissions':
@@ -159,7 +156,6 @@ def plot_combined_bar_vs_options(type_of_factor, year_range, country):
         )
 
         fig.update_layout(barmode='group', xaxis_tickangle=-45)
-        fig.show()
         return fig
 
     if type_of_factor == 'Temperature':
@@ -194,7 +190,6 @@ def plot_combined_bar_vs_options(type_of_factor, year_range, country):
         )
 
         fig.update_layout(barmode='group', xaxis_tickangle=-45)
-        fig.show()
         return fig
 
 # plot_combined_bar_vs_options('Temperature', [1990, 2010], 'Ireland')
