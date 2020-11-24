@@ -38,5 +38,20 @@ def get_green_house():
     return df
 
 
+def get_sea_level():
+    df = read_dataset(Path('..', 'data', 'csv_files', 'final_sea_level_data(1993-2015).csv'))
+    return df
+
+
+def get_glaciers():
+    df = read_dataset(Path('..', 'data', 'csv_files', 'Clean_Glaciers.csv'))
+    return df
+
+
+def get_temperature():
+    df = read_dataset(Path('..', 'data', 'csv_files', 'temperature(1743-2013).csv'))
+    return df
+
+
 if __name__ == '__main__':
     print(get_electricity_and_population_info())

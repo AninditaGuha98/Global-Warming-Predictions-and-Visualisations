@@ -95,7 +95,6 @@ def plot_combined_bar_vs_options(type_of_factor, year_range, country):
         df_deforest = df_deforest[df_deforest['country'].isin(country_name)]
         df_deforest = df_deforest[df_deforest['year'].isin(years)]
 
-        print(df_deforest)
         fig = go.Figure()
         fig.add_trace(go.Bar(
             x=years,
@@ -131,7 +130,6 @@ def plot_combined_bar_vs_options(type_of_factor, year_range, country):
         df_green = df_green[df_green['country'].isin(country_name)]
         df_green = df_green[df_green['year'].isin(years)]
 
-        print(df_green)
         fig = go.Figure()
         fig.add_trace(go.Bar(
             x=years,
@@ -162,5 +160,40 @@ def plot_combined_bar_vs_options(type_of_factor, year_range, country):
         fig.show()
         return fig
 
+    if type_of_factor == 'Temperature':
+        df_temp = get_temperature()
+        df_temp = df_temp[df_temp['Country'].isin(country_name)]
+        df_temp = df_temp[df_temp['dt'].isin(years)]
 
-plot_combined_bar_vs_options('Green House Gas Emissions', [1990, 2000], 'Indonesia')
+        fig = go.Figure()
+        fig.add_trace(go.Bar(
+            x=years,
+            y=df_drought['value'],
+            name='drought',
+            marker_color='indianred'
+        ))
+        fig.add_trace(go.Bar(
+            x=years,
+            y=df_flood['value'],
+            name='flood',
+            marker_color='lightsalmon'
+        ))
+        fig.add_trace(go.Bar(
+            x=years,
+            y=df_storm['value'],
+            name='storm',
+            marker_color='pink'
+        ))
+        fig.add_trace(go.Scatter(
+            x=years,
+            y=df_temp['avg'],
+            mode='lines+markers',
+            name='Temperature')
+        )
+
+        fig.update_layout(barmode='group', xaxis_tickangle=-45)
+        fig.show()
+        return fig
+
+
+# plot_combined_bar_vs_options('Temperature', [1990, 2010], 'Ireland')
