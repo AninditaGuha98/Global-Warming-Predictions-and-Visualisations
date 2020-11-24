@@ -1,23 +1,24 @@
 from plotly.subplots import make_subplots
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 
-from data.glaciers_source import read_dataset, clean_greenhouse, clean_surface_area,clean_agriculture_area,clean_oil_production,clean_glaciers,clean_forest_area
+from data.source import clean_greenhouse, clean_surface_area, clean_agriculture_area, \
+    clean_oil_production, clean_glaciers, clean_forest_area
 
-def glacier_graph(start_year, end_year, country):
+
+def glacier_graph(country: str, start_year: int, end_year: int):
     glacier_df = clean_glaciers()
-    print(glacier_df)
+
     glacier_df = glacier_df[(glacier_df["Year"] >= start_year) & (glacier_df["Year"] < end_year)]
-    print(glacier_df)
+    # print(glacier_df)
     greenhouse_df = clean_greenhouse()
     greenhouse_df = greenhouse_df.loc[greenhouse_df["country"] == country]
 
-    greenhouse_df = greenhouse_df[(greenhouse_df["year"] >= start_year) & (greenhouse_df["year"] < end_year)]
-    print(greenhouse_df)
+    greenhouse_df = greenhouse_df[(greenhouse_df["year"] > start_year) & (greenhouse_df["year"] < end_year)]
+    # print(greenhouse_df)
     fig = make_subplots()
 
     fig.add_trace(
@@ -29,73 +30,62 @@ def glacier_graph(start_year, end_year, country):
     )
 
     fig.update_layout()
-    fig.show()
+    # fig.show()
+    return fig
 
-def area_graph(start_year, end_year, type):
+
+def area_graph(type: str, start_year: int, end_year: int):
     df = clean_forest_area()
     df1 = clean_agriculture_area()
     df2 = clean_surface_area()
-    df =pd.merge(df,df1, on=['country','year'])
-    df =pd.merge(df,df2, on=['country','year'])
-    print(df)
+    df = pd.merge(df, df1, on=['country', 'year'])
+    df = pd.merge(df, df2, on=['country', 'year'])
+    # print(df)
     df = df[(df["year"] >= start_year) & (df["year"] < end_year)]
 
-    # fig = make_subplots(rows=2, cols=2)
-    #
-    # fig.add_trace(
-    #     go.Bar(x=df["year"], y=df["value_y"],name="forest"),
-    #     row=1, col=1
-    # )
-    #
-    # fig.add_trace(
-    #     go.Bar(x=df["year"], y=df["value_x"],name="agriculture"),
-    #     row=1, col=2
-    # )
-    #
-    # fig.add_trace(
-    #     go.Bar(x=df["year"], y=df["value_y"], name="surface"),
-    #     row=2, col=1
-    # )
-    #
-    # fig.update_layout()
-    # fig.show()
-
     if type == "forest":
+        print("forest")
         fig = px.choropleth(df, locations="country",
                             color="value_x",
                             locationmode="country names",
                             hover_name="country",
+                            animation_frame="year",
                             color_continuous_scale=px.colors.sequential.Plasma)
     elif type == "surface":
+        print("surface")
         fig = px.choropleth(df, locations="country",
                             color="value_y",
                             locationmode="country names",
                             hover_name="country",
+                            animation_frame="year",
                             color_continuous_scale=px.colors.sequential.Plasma)
     else:
+        print("agriculture")
         fig = px.choropleth(df, locations="country",
-                                color="value",
-                                locationmode="country names",
-                                hover_name="country",
-                                color_continuous_scale=px.colors.sequential.Plasma)
-    fig.show()
+                            color="value",
+                            locationmode="country names",
+                            hover_name="country",
+                            animation_frame="year",
+                            color_continuous_scale=px.colors.sequential.Plasma)
+    # fig.show()
+    return fig
 
 
-def oil_graph(start_year,end_year):
+def oil_graph(start_year, end_year):
     df = clean_oil_production()
     df = df[(df["year"] >= start_year) & (df["year"] < end_year)]
-    print(df)
+    # print(df)
 
-
-    fig = px.bar(df, x="country", y="value", animation_frame="year", hover_name="country")
+    fig = px.scatter(df, x="country", y="value", animation_frame="year", size="value", color="country", hover_name="country")
 
     fig["layout"].pop("updatemenus")  # optional, drop animation buttons
-    fig.show()
+    # fig.show()
+    return fig
 
 
 if __name__ == "__main__":
     country = "Canada"
-    type ="agri"
-    glacier_graph(2005,2020, country)
-    area_graph(2000,2020,type)
-    oil_graph(2000,2020)
+    type = "surface"
+    glacier_graph(country, 2005, 2020)
+    area_graph(type, 2000, 2020)
+    oil_graph(2000, 2020)
