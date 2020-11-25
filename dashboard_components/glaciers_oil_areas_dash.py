@@ -16,7 +16,7 @@ import dash_bootstrap_components as dbc
 from graphs.population_vs_electricity_graphs import renewable_vs_non_renewable_electricity, \
     non_renewable_electricity_vs_poverty, non_renewable_electricity_vs_population
 
-from graphs.glaciers_oil_areas import glacier_graph, area_graph, oil_graph
+from graphs.glaciers_oil_areas import glacier_graph, area_graph,  oil_graph
 
 def glaciers_tab(app):
     tab1 = dbc.Card(
@@ -25,6 +25,7 @@ def glaciers_tab(app):
                 dbc.Col(dbc.FormGroup([
                     dbc.Label("Country Name:"),
                     dbc.Input(value="Canada", id="glacier-input-1", type="text"),
+                    dbc.Label("Enter Year Range:"),
                     dbc.Input(value=1990, id="glacier-input-2", type="number"),
                     dbc.Input(value=2016, id="glacier-input-3", type="number"),
                 ]),
@@ -63,7 +64,7 @@ def area_tab(app):
                 dbc.Col(
 
                     dbc.FormGroup([
-                    dbc.Label("Enter Year:"),
+                    dbc.Label("Enter Year Range:"),
                     dbc.Input(value=1990, id="area-input-1", type="number"),
                     dbc.Input(value=2013, id="area-input-2", type="number"),
                     ]),
@@ -88,8 +89,9 @@ def area_tab(app):
             html.Hr(),
             dbc.Row([
                 html.Br(),html.Br(),
-                dbc.Col(dcc.Graph(id='area-graph'))
-            ])
+                dbc.Col(dcc.Graph(id='area-graph')),
+            ]),
+
         ]),
         className="mt-3",
     )
@@ -109,7 +111,7 @@ def oil_tab(app):
         dbc.CardBody([
             dbc.Row([
                 dbc.Col(dbc.FormGroup([
-                    dbc.Label("Year:"),
+                    dbc.Label("Enter Year Range:"),
                     dbc.Input(value=2000, id="oil-input-1", type="number"),
                     dbc.Input(value=2020, id="oil-input-2", type="number"),
 

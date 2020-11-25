@@ -6,30 +6,27 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 from data.source import clean_greenhouse, clean_surface_area, clean_agriculture_area, \
-    clean_oil_production, clean_glaciers, clean_forest_area
+    clean_oil_production, clean_glaciers, clean_forest_area, temperature_glaciers
 
 
 def glacier_graph(country: str, start_year: int, end_year: int):
     glacier_df = clean_glaciers()
-
     glacier_df = glacier_df[(glacier_df["Year"] >= start_year) & (glacier_df["Year"] < end_year)]
-    # print(glacier_df)
-    greenhouse_df = clean_greenhouse()
-    greenhouse_df = greenhouse_df.loc[greenhouse_df["country"] == country]
 
-    greenhouse_df = greenhouse_df[(greenhouse_df["year"] > start_year) & (greenhouse_df["year"] < end_year)]
-    # print(greenhouse_df)
+    temp_df = temperature_glaciers()
+    temp_df = temp_df.loc[temp_df["Country"] == country]
+    temp_df = temp_df[(temp_df["dt"] > start_year) & (temp_df["dt"] < end_year)]
+
     fig = make_subplots()
-
     fig.add_trace(
-        go.Scatter(x=glacier_df["Year"], y=-glacier_df["Mean cumulative mass balance"])
+        go.Scatter(x=glacier_df["Year"], y=-glacier_df["Mean cumulative mass balance"], name="Glacier Mass Balance Rise")
     )
-
     fig.add_trace(
-        go.Scatter(x=greenhouse_df["year"], y=greenhouse_df["value"])
+        go.Scatter(x=temp_df["dt"], y=temp_df["avg"], name="Temperature Increase")
     )
-
-    fig.update_layout()
+    fig.update_layout(title='Glacier vs Temperature Rise',
+                      xaxis_title='Years',
+                      yaxis_title='Glacier Mass Balance vs Temperature Mean')
     # fig.show()
     return fig
 
@@ -40,7 +37,6 @@ def area_graph(type: str, start_year: int, end_year: int):
     df2 = clean_surface_area()
     df = pd.merge(df, df1, on=['country', 'year'])
     df = pd.merge(df, df2, on=['country', 'year'])
-    # print(df)
     df = df[(df["year"] >= start_year) & (df["year"] < end_year)]
 
     if type == "forest":
@@ -70,17 +66,19 @@ def area_graph(type: str, start_year: int, end_year: int):
     # fig.show()
     return fig
 
-
 def oil_graph(start_year, end_year):
     df = clean_oil_production()
     df = df[(df["year"] >= start_year) & (df["year"] < end_year)]
-    # print(df)
-
     fig = px.scatter(df, x="country", y="value", animation_frame="year", size="value", color="country", hover_name="country")
 
-    fig["layout"].pop("updatemenus")  # optional, drop animation buttons
+    fig["layout"].pop("updatemenus")
+    fig.update_layout(title='Increase in Oil Production',
+                      xaxis_title='Country',
+                      yaxis_title='Mean Oil Production')
     # fig.show()
     return fig
+
+
 
 
 if __name__ == "__main__":

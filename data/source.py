@@ -31,6 +31,9 @@ def clean_oil_production():
 def clean_greenhouse():
     df = read_dataset(Path('.','data', 'csv_files', 'Clean_Greenhouse_Emissions.csv'))
     return df
+def temperature_glaciers():
+    df = read_dataset(Path('.','data', 'csv_files', 'temperature_new.csv'))
+    return df
 
 if __name__ == '__main__':
     print(get_electricity_and_population_info())
