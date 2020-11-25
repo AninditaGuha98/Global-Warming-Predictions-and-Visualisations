@@ -12,7 +12,6 @@ from data.source import get_electricity_and_population_info
 
 def renewable_vs_non_renewable_electricity(country_name: str):
     df = get_electricity_and_population_info()
-    print(df.columns)
     df = df.loc[df['country']==country_name]
     fig = go.Figure()
 
@@ -52,7 +51,6 @@ def non_renewable_electricity_vs_poverty(year: int):
 def non_renewable_electricity_vs_population(year: int):
 
     df = get_electricity_and_population_info()
-    print(df.columns)
     df = df.loc[df['year']==year]
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])

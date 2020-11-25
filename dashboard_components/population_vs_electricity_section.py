@@ -55,17 +55,17 @@ def tab_2_content(app):
         dbc.CardBody([
             dbc.Row([
                 dbc.Col(dbc.FormGroup([
-                    dbc.Label("Enter Year:"),
-                    dbc.Input(value=1990, id="population_vs_electricity-country-input-2", type="number"),
+                    dbc.Label("Choose The Year:"),
+                    dcc.RangeSlider(
+                        id='population_vs_electricity-country-input-2',
+                        min=1985,
+                        max=2015,
+                        value=[2000],
+                        dots=True,
+                        marks={i: str(i) for i in range(1985, 2016)},
+                    ),
                 ]),
-                    md=6),
-                dbc.Col(dbc.FormGroup([
-                    dbc.Label("."),
-                    dbc.Button('Display the Graph', id='population_vs_electricity_country-display-graph-button-2',
-                               color='info',
-                               style={'margin-bottom': '1em'}, block=True)
-                ]),
-                    md=6)
+                    md=12)
             ]),
             html.Hr(),
             dbc.Row([
@@ -75,13 +75,14 @@ def tab_2_content(app):
         ]),
         className="mt-3",
     )
+
     @app.callback(
         Output('population_vs_electricity_country-graph-2', 'figure'),
-        [Input('population_vs_electricity_country-display-graph-button-2', 'n_clicks')],
+        [Input('population_vs_electricity-country-input-2', 'value')],
         [State('population_vs_electricity-country-input-2', 'value')])
     def update_figure(n_clicks, year):
         if year:
-            return non_renewable_electricity_vs_poverty(year)
+            return non_renewable_electricity_vs_poverty(year[0])
 
     return tab2
 
@@ -90,17 +91,17 @@ def tab_3_content(app):
         dbc.CardBody([
             dbc.Row([
                 dbc.Col(dbc.FormGroup([
-                    dbc.Label("Year:"),
-                    dbc.Input(value=2000, id="population_vs_electricity-country-input-3", type="number"),
+                    dbc.Label("Choose The Year:"),
+                    dcc.RangeSlider(
+                        id='population_vs_electricity-country-input-3',
+                        min=1985,
+                        max=2015,
+                        value=[2000],
+                        dots=True,
+                        marks={i: str(i) for i in range(1985, 2016)},
+                    ),
                 ]),
-                    md=6),
-                dbc.Col(dbc.FormGroup([
-                    dbc.Label("."),
-                    dbc.Button('Display the Graph', id='population_vs_electricity_country-display-graph-button-3',
-                               color='info',
-                               style={'margin-bottom': '1em'}, block=True)
-                ]),
-                    md=6)
+                    md=12),
             ]),
             html.Hr(),
             dbc.Row([
@@ -111,11 +112,11 @@ def tab_3_content(app):
     )
     @app.callback(
         Output('population_vs_electricity_country-graph-3', 'figure'),
-        [Input('population_vs_electricity_country-display-graph-button-3', 'n_clicks')],
+        [Input('population_vs_electricity-country-input-3', 'value')],
         [State('population_vs_electricity-country-input-3', 'value')])
     def update_figure(n_clicks, year):
         if year:
-            return non_renewable_electricity_vs_population(year)
+            return non_renewable_electricity_vs_population(year[0])
 
     return tab3
 
