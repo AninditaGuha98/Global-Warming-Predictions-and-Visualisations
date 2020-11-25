@@ -14,6 +14,7 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 
 from dashboard_components.population_vs_electricity_section import population_vs_electricity_section
+from dashboard_components.glaciers_oil_areas_dash import glacier_and_oil_impacts
 from dashboard_components.emissions import emission_section
 from dashboard_components.catastrophe_section import catastrophe_section
 
@@ -31,6 +32,9 @@ def dashboard():
         population_vs_electricity_section(app),
 
         html.Hr(),
+
+        html.H2(children="Glaciers and Oil"),
+        glacier_and_oil_impacts(app),
 
         html.H2(children="Emissions:"),
         emission_section(app),

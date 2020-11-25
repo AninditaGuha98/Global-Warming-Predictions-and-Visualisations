@@ -44,7 +44,6 @@ def get_green_house():
     df = read_dataset(Path('.', 'data', 'csv_files', 'Clean_Greenhouse_Emissions.csv'))
     return df
 
-
 def get_sea_level():
     df = read_dataset(Path('.', 'data', 'csv_files', 'final_sea_level_data(1993-2015).csv'))
     return df
@@ -58,4 +57,43 @@ def get_glaciers():
 def get_temperature():
     df = read_dataset(Path('.', 'data', 'csv_files', 'temperature_new.csv'))
     return df
+    
+
+def clean_glaciers():
+    df = read_dataset(Path('.','data', 'csv_files', 'Clean_Glaciers.csv'))
+    return df
+
+
+def clean_surface_area():
+    df = read_dataset(Path('.','data', 'csv_files', 'Clean_Surface_Area.csv'))
+    return df
+    
+    
+def clean_forest_area():
+    df = read_dataset(Path('.','data', 'csv_files', 'Clean_Forest_Area.csv'))
+    return df
+    
+    
+def clean_agriculture_area():
+    df = read_dataset(Path('.','data', 'csv_files', 'Clean_Agriculture_Area.csv'))
+    return df
+    
+    
+def clean_oil_production():
+    df = read_dataset(Path('.','data', 'csv_files', 'Clean_Oil_Production.csv'))
+    return df
+    
+    
+def clean_greenhouse():
+    df = read_dataset(Path('.','data', 'csv_files', 'Clean_Greenhouse_Emissions.csv'))
+    return df
+    
+    
+def temperature_glaciers():
+    df = read_dataset(Path('.','data', 'csv_files', 'temperature_new.csv'))
+    return df
+
+if __name__ == '__main__':
+    print(get_electricity_and_population_info())
+
 
