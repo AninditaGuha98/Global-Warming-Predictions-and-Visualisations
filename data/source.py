@@ -93,6 +93,14 @@ def temperature_glaciers():
     df = read_dataset(Path('.','data', 'csv_files', 'temperature_new.csv'))
     return df
 
+def glaciers_vs_temperature():
+    df = read_dataset(Path('..','data', 'csv_files', 'glaciers_temperature_df.csv'))
+    return df
+
+def sea_level_vs_temperature():
+    df = read_dataset(Path('..','data', 'csv_files', 'sea_level_temperature_df.csv'))
+    return df
+
 if __name__ == '__main__':
     print(get_electricity_and_population_info())
 
