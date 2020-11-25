@@ -24,7 +24,7 @@ def dashboard():
     app = dash.Dash(external_stylesheets=[dbc.themes.SUPERHERO])
     app.layout = dbc.Container([
         html.H1(children='Global Climate Change Analysis'),
-        html.Div(children='- Project by Data Vault Team'),
+        html.Div(children='- by Data Vault Team'),
 
         html.Hr(),
         html.H2(children="Electricity Generation Information:"),
