@@ -116,13 +116,13 @@ def catastrophe_vs_options_tab_2(app):
                                          options=[{'label': k, 'value': k} for k in catastrophe_types.keys()],
                                          value='Drought'))
                 ]),
-                    md=6),
+                    md=4),
 
                 dbc.Col(dbc.FormGroup([
                     dbc.Label("Select a country to view:"),
                     dbc.Col(dcc.Dropdown(id='country_view_dropdown', value='All'))
                 ]),
-                    md=6),
+                    md=4),
 
                 dbc.Col(dbc.FormGroup([
                     dbc.Label(" "),
@@ -130,7 +130,7 @@ def catastrophe_vs_options_tab_2(app):
                                color='info',
                                style={'margin-bottom': '1em'}, block=True)
                 ]),
-                    md=6)
+                    md=4)
             ]),
             html.Hr(),
             dbc.Row([
@@ -215,7 +215,7 @@ def catastrophe_combined_graph_vs_options_tab_3(app):
                                color='info',
                                style={'margin-bottom': '1em'}, block=True)
                 ]),
-                    md=6)
+                    md=12)
             ]),
             html.Hr(),
             dbc.Row([
