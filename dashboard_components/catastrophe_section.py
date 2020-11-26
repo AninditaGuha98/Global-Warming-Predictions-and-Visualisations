@@ -193,13 +193,13 @@ def catastrophe_combined_graph_vs_options_tab_3(app):
 
                 dbc.Col(dbc.FormGroup([
                     dbc.Label("Select Start Year:"),
-                    dbc.Col(dcc.Dropdown(id='catastrophe_start_year', value=1990))
+                    dbc.Col(dcc.Dropdown(id='catastrophe_start_year', value=1990 ,style={'backgroundColor':'white','color':'black'}))
                 ]),
                     md=6),
 
                 dbc.Col(dbc.FormGroup([
                     dbc.Label("Select End Year:"),
-                    dbc.Col(dcc.Dropdown(id='catastrophe_end_year', value=2008))
+                    dbc.Col(dcc.Dropdown(id='catastrophe_end_year', value=2008, style={'backgroundColor':'white','color':'black'}))
                 ]),
                     md=6),
 

@@ -30,8 +30,8 @@ def  glacier_vs_temperature_model_prediction(temperature: int, glacier: int):
     fig.add_trace(go.Scatter(x=df['temperature'], y=glacier_prediction(temperatures_list), name='Regression Model',
                              line=dict(color='royalblue', width=4)))
     fig.update_layout(title='<b>Glacier Mass Balance vs Temperature (Polynomial Regression)</b>',
-                      xaxis_title='Glaciers Mass Balance',
-                      yaxis_title='Sea Level')
+                      xaxis_title='Temperature',
+                      yaxis_title='Glacier Level')
 
     # fig.show()
     return fig
