@@ -94,11 +94,15 @@ def temperature_glaciers():
     return df
 
 def glaciers_vs_temperature():
-    df = read_dataset(Path('..','data', 'csv_files', 'glaciers_temperature_df.csv'))
+    df = read_dataset(Path('.','data', 'csv_files', 'glaciers_temperature_df.csv'))
     return df
 
 def sea_level_vs_temperature():
-    df = read_dataset(Path('..','data', 'csv_files', 'sea_level_temperature_df.csv'))
+    df = read_dataset(Path('.','data', 'csv_files', 'sea_level_temperature_df.csv'))
+    return df
+
+def get_temp_greenhouse_carbon_forest():
+    df = read_dataset(Path('.','data', 'csv_files', 'temp_greenhouse_carbon_forest.csv'))
     return df
 
 if __name__ == '__main__':
