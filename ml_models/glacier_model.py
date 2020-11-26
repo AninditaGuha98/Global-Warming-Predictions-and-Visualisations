@@ -11,7 +11,7 @@ class Glacier_Models:
     @staticmethod
     def get_glaciers_model():
         if Glacier_Models.__glaciers_model == None:
-            print('Creating new glaciers model...')
+            # print('Creating new glaciers model...')
             dataset = glaciers_vs_temperature()
             X = dataset.iloc[:, :-1].values
             y = dataset.iloc[:, -1].values
@@ -24,7 +24,7 @@ class Glacier_Models:
 
             Glacier_Models.__glaciers_model = poly_linear_regressor
             Glacier_Models.__glaciers_poly_regressor = poly_regressor
-            print(Glacier_Models.__glaciers_model, Glacier_Models.__glaciers_poly_regressor)
+            # print(Glacier_Models.__glaciers_model, Glacier_Models.__glaciers_poly_regressor)
 
         return Glacier_Models.__glaciers_model
 

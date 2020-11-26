@@ -38,5 +38,5 @@ def  glacier_vs_temperature_model_prediction(temperature: int, sea_level: int):
 
 if __name__ == "__main__":
     glacier_vs_temperature_model_info()
-    glacier_vs_temperature_model_prediction(20, -35)
+    glacier_vs_temperature_model_prediction(20,  -34.04636935)
     print("ok")

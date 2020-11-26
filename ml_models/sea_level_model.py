@@ -11,7 +11,7 @@ class Sea_Level_Models:
     @staticmethod
     def get_sea_level_model():
         if Sea_Level_Models.__sea_level_model == None:
-            print('Creating new sea level model...')
+            # print('Creating new sea level model...')
             dataset = sea_level_vs_temperature()
             X = dataset.iloc[:, :-1].values
             y = dataset.iloc[:, -1].values
