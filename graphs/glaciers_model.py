@@ -12,28 +12,28 @@ def glacier_vs_temperature_model_info():
                              line=dict(color='firebrick', width=4)))
     fig.add_trace(go.Scatter(x=df['temperature'], y=glacier_prediction(temperatures_list), name='Regression Model',
                              line=dict(color='royalblue', width=4)))
-    fig.update_layout(title='<b>Glaciers vs Temperature (Polinomial Regression)</b>',
+    fig.update_layout(title='<b>Glaciers Mass Balance vs Temperature (Polynomial Regression)</b>',
                       xaxis_title='Temperature',
-                      yaxis_title='Glaciers')
+                      yaxis_title='Glaciers Mass Balance')
 
-    fig.show()
+    # fig.show()
     return fig
 
 
-def  glacier_vs_temperature_model_prediction(temperature: int, sea_level: int):
+def  glacier_vs_temperature_model_prediction(temperature: int, glacier: int):
     df = glaciers_vs_temperature()
     temperatures_list = df.iloc[:, :-1].values
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=[temperature], y=[sea_level], mode='markers', name='Complete Dataset',
+    fig.add_trace(go.Scatter(x=[temperature], y=[glacier], mode='markers', name='Predicted Value',
                              marker=dict(color='firebrick', size=10)))
     fig.add_trace(go.Scatter(x=df['temperature'], y=glacier_prediction(temperatures_list), name='Regression Model',
                              line=dict(color='royalblue', width=4)))
-    fig.update_layout(title='<b>Sea Level vs Temperature (Polinomial Regression)</b>',
-                      xaxis_title='Temperature',
+    fig.update_layout(title='<b>Glacier Mass Balance vs Temperature (Polynomial Regression)</b>',
+                      xaxis_title='Glaciers Mass Balance',
                       yaxis_title='Sea Level')
 
-    fig.show()
+    # fig.show()
     return fig
 
 if __name__ == "__main__":

@@ -61,7 +61,7 @@ def tab_2_content(app):
                 dbc.Col(
                     dbc.FormGroup([
                         dbc.Label("Choose Type"),
-                        dcc.Dropdown(id="emissions-column-input-2", value='carbon',
+                        dcc.Dropdown(id="emissions-column-input-2", value='carbon', style={'backgroundColor':'white','color':'black'},
                                      options=[{"label": "Carbon", "value": "carbon"},
                                               {"label": "Carbon Per Person", "value": "carbon_person"},
                                               {"label": "Coal", "value": "coal"},
@@ -72,7 +72,6 @@ def tab_2_content(app):
             ]),
             dbc.Row([
                 dbc.Col(dbc.FormGroup([
-                    dbc.Label("."),
                     dbc.Button('Display the Graph', id='emissions-display-graph-button-2',
                                color='info',
                                style={'margin-bottom': '1em'}, block=True)
@@ -110,7 +109,7 @@ def tab_3_content(app):
                 dbc.Col(
                     dbc.FormGroup([
                         dbc.Label("Choose Type"),
-                        dcc.Dropdown(id="emissions-column-input-3", value='coal',
+                        dcc.Dropdown(id="emissions-column-input-3", value='coal', style={'backgroundColor':'white','color':'black'},
                                      options=[{"label": "Carbon", "value": 'carbon_total'},
                                               {"label": "Carbon Per Person", "value": 'carbon_per_person'},
                                               {"label": "Coal", "value": 'coal'},
@@ -121,7 +120,6 @@ def tab_3_content(app):
             ]),
             dbc.Row([
                 dbc.Col(dbc.FormGroup([
-                    dbc.Label("."),
                     dbc.Button('Display the Graph', id='emissions-display-graph-button-3',
                                color='info',
                                style={'margin-bottom': '1em'}, block=True)
@@ -158,7 +156,7 @@ def tab_4_content(app):
                 dbc.Col(
                     dbc.FormGroup([
                         dbc.Label("Choose Type"),
-                        dcc.Dropdown(id="emissions-column-input-4", value='coal',
+                        dcc.Dropdown(id="emissions-column-input-4", value='coal', style={'backgroundColor':'white','color':'black'},
                                      options=[{"label": "Carbon", "value": 'carbon_total'},
                                               {"label": "Carbon Per Person", "value": 'carbon_per_person'},
                                               {"label": "Coal", "value": 'coal'},
@@ -169,7 +167,6 @@ def tab_4_content(app):
             ]),
             dbc.Row([
                 dbc.Col(dbc.FormGroup([
-                    dbc.Label("."),
                     dbc.Button('Display the Graph', id='emissions-display-graph-button-4',
                                color='info',
                                style={'margin-bottom': '1em'}, block=True)
@@ -197,10 +194,11 @@ def tab_4_content(app):
 def emission_section(app):
     tabs = dbc.Tabs(
         [
+            dbc.Tab(tab_4_content(app), label="Pie Chart"),
             dbc.Tab(tab_1_content(app), label="Line Chart (Carbon and Greenhouse)"),
             dbc.Tab(tab_2_content(app), label="Map"),
             dbc.Tab(tab_3_content(app), label="Bar Chart"),
-            dbc.Tab(tab_4_content(app), label="Pie Chart"),
+
         ]
     )
     return tabs

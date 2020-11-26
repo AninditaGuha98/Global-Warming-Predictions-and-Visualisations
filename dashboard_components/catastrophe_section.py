@@ -26,19 +26,19 @@ def sea_level_vs_others_tab_1(app):
                     dbc.Label("Select Options:"),
                     dbc.Col(dcc.Dropdown(id='sea_level_option_dropdown',
                                          options=[{'label': k, 'value': k} for k in all_options.keys()],
-                                         value='Temperature'))
+                                         value='Temperature'), style={'backgroundColor':'white','color':'black'})
                 ]),
                     md=6),
 
                 dbc.Col(dbc.FormGroup([
                     dbc.Label("Select Start Year:"),
-                    dbc.Col(dcc.Dropdown(id='sea_level_start_year_dropdown', value=2000))
+                    dbc.Col(dcc.Dropdown(id='sea_level_start_year_dropdown', value=2000), style={'backgroundColor':'white','color':'black'})
                 ]),
                     md=6),
 
                 dbc.Col(dbc.FormGroup([
                     dbc.Label("Select End Year:"),
-                    dbc.Col(dcc.Dropdown(id='sea_level_end_year_dropdown', value=2010))
+                    dbc.Col(dcc.Dropdown(id='sea_level_end_year_dropdown', value=2010), style={'backgroundColor':'white','color':'black'})
                 ]),
                     md=6),
 
@@ -114,13 +114,13 @@ def catastrophe_vs_options_tab_2(app):
                     dbc.Label("Select catastrophe type :"),
                     dbc.Col(dcc.Dropdown(id='catastrophe_type_dropdown',
                                          options=[{'label': k, 'value': k} for k in catastrophe_types.keys()],
-                                         value='Drought'))
+                                         value='Drought', style={'backgroundColor':'white','color':'black'}))
                 ]),
                     md=4),
 
                 dbc.Col(dbc.FormGroup([
                     dbc.Label("Select a country to view:"),
-                    dbc.Col(dcc.Dropdown(id='country_view_dropdown', value='All'))
+                    dbc.Col(dcc.Dropdown(id='country_view_dropdown', value='All', style={'backgroundColor':'white','color':'black'}))
                 ]),
                     md=4),
 
@@ -187,7 +187,7 @@ def catastrophe_combined_graph_vs_options_tab_3(app):
                     dbc.Label("Select factor type:"),
                     dbc.Col(dcc.Dropdown(id='factor_type_dropdown',
                                          options=[{'label': k, 'value': k} for k in factor_types],
-                                         value='Deforestation'))
+                                         value='Deforestation', style={'backgroundColor':'white','color':'black'}))
                 ]),
                     md=6),
 
@@ -205,7 +205,7 @@ def catastrophe_combined_graph_vs_options_tab_3(app):
 
                 dbc.Col(dbc.FormGroup([
                     dbc.Label("Select a country :"),
-                    dbc.Col(dcc.Dropdown(id='catastrophe_country_name', value='Indonesia'))
+                    dbc.Col(dcc.Dropdown(id='catastrophe_country_name', value='Indonesia', style={'backgroundColor':'white','color':'black'}))
                 ]),
                     md=6),
 
@@ -282,8 +282,8 @@ def catastrophe_combined_graph_vs_options_tab_3(app):
 def catastrophe_section(app):
     tabs = dbc.Tabs(
         [
-            dbc.Tab(sea_level_vs_others_tab_1(app), label="Sea Level Rise"),
             dbc.Tab(catastrophe_vs_options_tab_2(app), label="Catastrophe Over the Years"),
+            dbc.Tab(sea_level_vs_others_tab_1(app), label="Sea Level Rise"),
             dbc.Tab(catastrophe_combined_graph_vs_options_tab_3(app), label="Trends in affects of other factors")
         ]
     )

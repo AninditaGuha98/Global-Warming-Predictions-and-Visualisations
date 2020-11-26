@@ -22,9 +22,11 @@ def plot_sea_level_vs_glacier_temp(option, start_year, end_year):
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=years, y=df_sea['GMSL_mean'],
                                  mode='lines',
+                                 line=dict(color='firebrick', width=4),
                                  name='Sea Level increase'))
         fig.add_trace(go.Scatter(x=years, y=df_glacier['Mean cumulative mass balance'],
                                  mode='lines+markers',
+                                 line=dict(color='royalblue', width=4),
                                  name='Glacier level decrease'))
         fig.update_layout(barmode='group', xaxis_tickangle=-45)
 
@@ -41,9 +43,11 @@ def plot_sea_level_vs_glacier_temp(option, start_year, end_year):
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=years, y=df_sea['GMSL_mean'],
                                  mode='lines',
+                                 line=dict(color='firebrick', width=4),
                                  name='Sea Level increase'))
         fig.add_trace(go.Scatter(x=years, y=df_temp['avg'],
                                  mode='lines+markers',
+                                 line=dict(color='royalblue', width=4),
                                  name='Temperature'))
         fig.update_layout(barmode='group', xaxis_tickangle=-45)
         return fig

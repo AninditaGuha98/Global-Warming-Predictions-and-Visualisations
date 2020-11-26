@@ -25,18 +25,18 @@ def glaciers_tab(app):
                 dbc.Col(dbc.FormGroup([
                     dbc.Label("Country Name:"),
                     dbc.Input(value="Canada", id="glacier-input-1", type="text"),
-                    dbc.Label("Enter Year Range:"),
+                    dbc.Label("Enter Start Year:"),
                     dbc.Input(value=1990, id="glacier-input-2", type="number"),
+                    dbc.Label("Enter End Year:"),
                     dbc.Input(value=2016, id="glacier-input-3", type="number"),
                 ]),
-                    md=6),
+                    md=12),
                 dbc.Col(dbc.FormGroup([
-                    dbc.Label("."),
                     dbc.Button('Display the Graph', id='glacier-button',
                                color='info',
                                style={'margin-bottom': '1em'}, block=True)
                 ]),
-                    md=6)
+                    md=12)
             ]),
             html.Hr(),
             dbc.Row([
@@ -64,27 +64,29 @@ def area_tab(app):
                 dbc.Col(
 
                     dbc.FormGroup([
-                    dbc.Label("Enter Year Range:"),
+                    dbc.Label("Enter Start Year:"),
                     dbc.Input(value=1990, id="area-input-1", type="number"),
+                    dbc.Label("Enter End Year:"),
                     dbc.Input(value=2013, id="area-input-2", type="number"),
                     ]),
                     md=6),
-                dbc.Col(
-                    dbc.FormGroup([
+                        dbc.Col(
+
+                            dbc.FormGroup([
                         dbc.Label("Choose Area Type"),
                         dcc.Dropdown(id="area-dropdown", value="forest",
+                                     style={'backgroundColor': 'white', 'color': 'black'},
                                      options=[{"label": "Forest Area", "value": "forest"},
                                               {"label": "Surface Area", "value": "surface"},
                                               {"label": "Agriculture Area", "value": "agriculture"}]),
+                        dbc.Label("."),
+                        dbc.Button('Display the Graph', id='area-button',
+                                   color='info',
+                                   style={'margin-bottom': '1em'}, block=True)
                     ]),
                     md=6),
-                dbc.Col(dbc.FormGroup([
-                    dbc.Label("."),
-                    dbc.Button('Display the Graph', id='area-button',
-                               color='info',
-                               style={'margin-bottom': '1em'}, block=True)
-                ]),
-                    md=6)
+
+
             ]),
             html.Hr(),
             dbc.Row([
@@ -111,19 +113,19 @@ def oil_tab(app):
         dbc.CardBody([
             dbc.Row([
                 dbc.Col(dbc.FormGroup([
-                    dbc.Label("Enter Year Range:"),
+                    dbc.Label("Enter Start Year:"),
                     dbc.Input(value=2000, id="oil-input-1", type="number"),
+                    dbc.Label("Enter End Year:"),
                     dbc.Input(value=2020, id="oil-input-2", type="number"),
 
                 ]),
-                    md=6),
+                    md=12),
                 dbc.Col(dbc.FormGroup([
-                    dbc.Label("."),
                     dbc.Button('Display the Graph', id='oil-button',
                                color='info',
                                style={'margin-bottom': '1em'}, block=True)
                 ]),
-                    md=6)
+                    md=12)
             ]),
             html.Hr(),
             dbc.Row([
@@ -146,9 +148,10 @@ def oil_tab(app):
 def glacier_and_oil_impacts(app):
     tabs = dbc.Tabs(
         [
+            dbc.Tab(oil_tab(app), label="Impact of Oil Production"),
             dbc.Tab(glaciers_tab(app), label="Impact of Glaciers"),
             dbc.Tab(area_tab(app), label="Area Changes"),
-            dbc.Tab(oil_tab(app), label="Impact of Oil Production"),
+
 
         ]
     )

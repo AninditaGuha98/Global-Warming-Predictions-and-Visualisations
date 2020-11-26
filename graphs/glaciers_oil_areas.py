@@ -19,10 +19,12 @@ def glacier_graph(country: str, start_year: int, end_year: int):
 
     fig = make_subplots()
     fig.add_trace(
-        go.Scatter(x=glacier_df["Year"], y=-glacier_df["Mean cumulative mass balance"], name="Glacier Mass Balance Rise")
+        go.Scatter(x=glacier_df["Year"], y=-glacier_df["Mean cumulative mass balance"],
+                   line=dict(color='firebrick', width=4), name="Glacier Mass Balance Rise")
     )
     fig.add_trace(
-        go.Scatter(x=temp_df["dt"], y=temp_df["avg"], name="Temperature Increase")
+        go.Scatter(x=temp_df["dt"], y=temp_df["avg"],
+                   line=dict(color='royalblue', width=4), name="Temperature Increase")
     )
     fig.update_layout(title='Glacier vs Temperature Rise',
                       xaxis_title='Years',
@@ -40,7 +42,6 @@ def area_graph(type: str, start_year: int, end_year: int):
     df = df[(df["year"] >= start_year) & (df["year"] < end_year)]
 
     if type == "forest":
-        print("forest")
         fig = px.choropleth(df, locations="country",
                             color="value_x",
                             locationmode="country names",
@@ -48,7 +49,6 @@ def area_graph(type: str, start_year: int, end_year: int):
                             animation_frame="year",
                             color_continuous_scale=px.colors.sequential.Plasma)
     elif type == "surface":
-        print("surface")
         fig = px.choropleth(df, locations="country",
                             color="value_y",
                             locationmode="country names",
@@ -56,7 +56,6 @@ def area_graph(type: str, start_year: int, end_year: int):
                             animation_frame="year",
                             color_continuous_scale=px.colors.sequential.Plasma)
     else:
-        print("agriculture")
         fig = px.choropleth(df, locations="country",
                             color="value",
                             locationmode="country names",
