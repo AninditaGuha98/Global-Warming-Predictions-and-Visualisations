@@ -52,8 +52,6 @@ def pie_analysis2(column):
 
     return fig
 
-
-
 if __name__ == "__main__":
     country_name = 'Canada'
     year = 1990
