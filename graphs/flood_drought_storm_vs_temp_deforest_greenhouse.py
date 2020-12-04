@@ -121,7 +121,8 @@ def plot_combined_bar_vs_options(type_of_factor, start_date, end_date, country):
             name='Reduction in Forest Area')
         )
 
-        fig.update_layout(barmode='group', xaxis_tickangle=-45)
+        fig.update_layout(barmode='group', xaxis_tickangle=-45,     xaxis_title=" Years ",
+    yaxis_title=" People affected ")
         return fig
 
     if type_of_factor == 'Green House Gas Emissions':
@@ -155,7 +156,8 @@ def plot_combined_bar_vs_options(type_of_factor, start_date, end_date, country):
             name='Green House Gas Emissions')
         )
 
-        fig.update_layout(barmode='group', xaxis_tickangle=-45)
+        fig.update_layout(barmode='group', xaxis_tickangle=-45,  xaxis_title=" Years ",
+    yaxis_title=" People affected ")
         return fig
 
     if type_of_factor == 'Temperature':
@@ -189,7 +191,8 @@ def plot_combined_bar_vs_options(type_of_factor, start_date, end_date, country):
             name='Temperature')
         )
 
-        fig.update_layout(barmode='group', xaxis_tickangle=-45)
+        fig.update_layout(barmode='group', xaxis_tickangle=-45,  xaxis_title=" Years ",
+    yaxis_title=" People affected ")
         return fig
 
 # plot_combined_bar_vs_options('Temperature', [1990, 2010], 'Ireland')

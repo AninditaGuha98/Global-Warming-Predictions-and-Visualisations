@@ -1,4 +1,3 @@
-
 import plotly.graph_objects as go
 from data.source import *
 
@@ -28,7 +27,8 @@ def plot_sea_level_vs_glacier_temp(option, start_year, end_year):
                                  mode='lines+markers',
                                  line=dict(color='royalblue', width=4),
                                  name='Glacier level decrease'))
-        fig.update_layout(barmode='group', xaxis_tickangle=-45)
+        fig.update_layout(barmode='group', xaxis_tickangle=-45, xaxis_title=" Years ",
+                          yaxis_title="Glacier Melt Level")
 
         return fig
 
@@ -49,7 +49,6 @@ def plot_sea_level_vs_glacier_temp(option, start_year, end_year):
                                  mode='lines+markers',
                                  line=dict(color='royalblue', width=4),
                                  name='Temperature'))
-        fig.update_layout(barmode='group', xaxis_tickangle=-45)
+        fig.update_layout(barmode='group', xaxis_tickangle=-45, xaxis_title=" Years ",
+                          yaxis_title="Temperature Level Increase ")
         return fig
-
-
