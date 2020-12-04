@@ -148,11 +148,6 @@ def tab_4_content(app):
     tab4 = dbc.Card(
         dbc.CardBody([
             dbc.Row([
-                dbc.Col(dbc.FormGroup([
-                    dbc.Label("Enter Year: "),
-                    dbc.Input(value=1990, id="emissions-year-input-4", type="number"),
-                ]),
-                    md=6),
                 dbc.Col(
                     dbc.FormGroup([
                         dbc.Label("Choose Type"),
@@ -163,7 +158,7 @@ def tab_4_content(app):
                                               {"label": "Sulfur", "value": 'sulfur'},
                                               {"label": "Greenhouse", "value": 'greenhouse'}]),
                     ]),
-                    md=6)
+                    md=12)
             ]),
             dbc.Row([
                 dbc.Col(dbc.FormGroup([
@@ -183,11 +178,10 @@ def tab_4_content(app):
     @app.callback(
         Output('emissions-graph-4', 'figure'),
         [Input('emissions-display-graph-button-4', 'n_clicks')],
-        [State('emissions-year-input-4', 'value'),
-         State('emissions-column-input-4', 'value')])
-    def update_figure(n_clicks, year, column):
-        if year and column:
-            return pie_analysis(column, year)
+        [State('emissions-column-input-4', 'value')])
+    def update_figure(n_clicks, column):
+        if column:
+            return pie_analysis2(column)
 
     return tab4
 

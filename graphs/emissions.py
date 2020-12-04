@@ -44,15 +44,13 @@ def map_analysis(column, year):
                         color_continuous_scale=px.colors.sequential.Plasma)
     return fig
 
-
-def pie_analysis(column, year):
+def pie_analysis2(column):
     df = get_all_emissions_info()
-    selected_countries = ['USA','Canada','India','China','Mexico','Australia','Brazil','Argentina','Indonesia','Japan','Germany']
-    df = df.loc[df['year'] == year]
+    selected_countries = ['USA', 'Canada', 'India', 'China', 'Brazil']
     df = df.loc[df['country'].isin(selected_countries)]
-    fig = px.pie(df, values=column, names='country')
-    return fig
+    fig = px.bar(df,x='year',y=column,color='country')
 
+    return fig
 
 if __name__ == "__main__":
     country_name = 'Canada'
