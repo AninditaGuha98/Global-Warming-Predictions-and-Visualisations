@@ -38,30 +38,33 @@ def area_graph(type: str, start_year: int, end_year: int):
     df1 = clean_agriculture_area()
     df2 = clean_surface_area()
     df = pd.merge(df, df1, on=['country', 'year'])
+
     df = pd.merge(df, df2, on=['country', 'year'])
     df = df[(df["year"] >= start_year) & (df["year"] < end_year)]
-
+    df.rename(columns={'value_x': 'Forest Area Reduction', 'value': 'Surface Area Reduction',
+                       'value_y': 'Agricultural Area Reduction'}, inplace=True)
     if type == "forest":
         fig = px.choropleth(df, locations="country",
-                            color="value_x",
+                            color="Forest Area Reduction",
                             locationmode="country names",
                             hover_name="country",
                             animation_frame="year",
                             color_continuous_scale=px.colors.sequential.Plasma)
     elif type == "surface":
         fig = px.choropleth(df, locations="country",
-                            color="value_y",
+                            color="Surface Area Reduction",
                             locationmode="country names",
                             hover_name="country",
                             animation_frame="year",
                             color_continuous_scale=px.colors.sequential.Plasma)
     else:
         fig = px.choropleth(df, locations="country",
-                            color="value",
+                            color="Agricultural Area Reduction",
                             locationmode="country names",
                             hover_name="country",
                             animation_frame="year",
                             color_continuous_scale=px.colors.sequential.Plasma)
+
     # fig.show()
     return fig
 
@@ -69,11 +72,13 @@ def oil_graph(start_year, end_year):
     df = clean_oil_production()
     df = df[(df["year"] >= start_year) & (df["year"] < end_year)]
     fig = px.scatter(df, x="country", y="value", animation_frame="year", size="value", color="country", hover_name="country")
-
+    fig['layout']['sliders'][0]['pad'] = dict(r=10, t=150, )
     fig["layout"].pop("updatemenus")
+
     fig.update_layout(title='Increase in Oil Production',
                       xaxis_title='Country',
                       yaxis_title='Mean Oil Production')
+
     # fig.show()
     return fig
 

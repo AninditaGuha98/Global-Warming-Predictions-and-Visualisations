@@ -27,7 +27,8 @@ def dashboard():
     app.layout = dbc.Container([
 
         html.H1(children='Global Climate Change Analysis'),
-        html.Div(children='- by Data Vault Team'),
+        html.H5(children='- by Data Vault Team'),
+        html.Div(children='Anindita Guha | Devam Shah | Sriram Ponangi | Vigneshwari Ravichandran'),
 
         html.Hr(),
         html.H2(children="Electricity Generation Information:"),
